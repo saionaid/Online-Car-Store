@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from carshop.views import homepage_view, free1, free2, free3, free4
 
 urlpatterns = [
+    path('', homepage_view, name='Welcome'),
+    path('free1/', free1),
+    path('free2/', free2),
+    path('free3/', free3),
+    path('free4/', free4),
     path('admin/', admin.site.urls),
 ]
