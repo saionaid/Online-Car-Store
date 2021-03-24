@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <title>Carshop</title>
+
+</head>
+<body>
+<header class="navbar navbar-light sticky-top bg-primary flex-md-nowrap p- shadow">
+    <a class="navbar-brand col-md3 col-lg-2 me-0 px-3" href=".">Carshop
+    </a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed"
+          type="button" data-bs-toggle="collapse" data-bs-target="#sidebarManu"
+          aria-controls="sidebarMenu" aria-expanded="false"
+          aria-label="Toggle navigation">Login
+  </button>
+  <input class="form-control form-control-primary w-100" type="text" placeholder="Search" aria-label="Search">
+  <ul class="navbar-nav px-3">search</ul>
+</header>
+
+
+
+<div>
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 80;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</div>
+<body>
+
+<div class="sidenav">
+  <a href="cars">Cars</a>
+  <a href="contact_form">Contact</a>
+<!--  <a href="free3">Clients</a>-->
+<!--  <a href="free4">Contact</a>-->
+</div>
+
+    <div class="main">
+
+            {% block content %}
+
+
+            {% endblock%}
+    </div>
+
+</body>
+
+
+
+
+
+
+
+
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+</body>
+</html>
