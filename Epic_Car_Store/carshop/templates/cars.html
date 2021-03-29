@@ -1,4 +1,36 @@
 {% extends 'base.html' %}
  {% block content %}
+
+
+    <table class="table">
+
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Year Released</th>
+            <th>Description</th>
+            <th>Price</th>
+			<th>Manufacturer</th>
+			<th></th>
+        </tr>
+
+
+            {% for p in product %}
+
+             <tr>
+                 <td>{{p.name}}</td>
+                 <td>{{p.type}}</td>
+                 <td>{{p.year_released}}</td>
+                 <td>{{p.cdescription}}</td>
+				 <td>{{p.price}}</td>
+				 <td>{{p.manufacturer}}</td>
+				 <td></td>
+            </tr>
+
+            {% endfor %}
+
+    </table>
+
+
  {% endblock%}
 
