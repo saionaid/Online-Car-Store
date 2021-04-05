@@ -12,6 +12,7 @@ class CarType(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=60)
+
     type = models.ForeignKey(CarType, on_delete=models.DO_NOTHING, null=True, blank=True)
     year_released = models.PositiveIntegerField(default=0)
     description = models.TextField(null=True, blank=True)

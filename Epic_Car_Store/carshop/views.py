@@ -69,30 +69,43 @@ def free4(request, *args, **kwargs):
 
 class HydrogenView(ListView):
     model = Product
-    queryset = Product.objects.filter(manufacturer='Porsche')
+    queryset = Product.objects.filter(type__name='Hydrogen')
     context_object_name = 'product'
     template_name = 'Hydrogen.html'
 
 
 
 class DieselView(ListView):
-    template_name = '"Diesel.html"'
-    queryset = Product.objects.all()
-    context_object_name = 'products'
+    model = Product
+    queryset = Product.objects.filter(type__name='Diesel')
+    context_object_name = 'product'
+    template_name = 'Hydrogen.html'
+
+class PetrolView(ListView):
+    model = Product
+    queryset = Product.objects.filter(type__name='Petrol')
+    context_object_name = 'product'
+    template_name = 'Petrol.html'
 
 
-def petrol(request, *args, **kwargs):
-    return render(request, "Petrol.html", {})
+class ElectricView(ListView):
+    model = Product
+    queryset = Product.objects.filter(type__name='Electric')
+    context_object_name = 'product'
+    template_name = 'Electric.html'
 
-def electric(request, *args, **kwargs):
-    return render(request, "Electric.html", {})
 
-def gas(request, *args, **kwargs):
-    return render(request, "Gas.html", {})
+class GasView(ListView):
+    model = Product
+    queryset = Product.objects.filter(type__name='Gas')
+    context_object_name = 'product'
+    template_name = 'Gas.html'
 
-def hybrid(request, *args, **kwargs):
-    return render(request, "Hybrid.html", {})
-
+class HybridView(ListView):
+    model = Product
+    queryset = Product.objects.filter(type__name='Hybrid')
+    context_object_name = 'product'
+    template_name = 'Hybrid.html'
 
 def contact(request):
     if request.method == 'POST':

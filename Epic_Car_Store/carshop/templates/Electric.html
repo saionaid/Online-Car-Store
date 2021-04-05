@@ -2,6 +2,11 @@
 {% extends 'base.html' %}
  {% block content %}
 
-{{ products }}
+
+{% for p in object_list %}
+<ul>{{ p.name }} {{ p.price }}
+</ul>
+
+{% endfor %}
 
  {% endblock%}

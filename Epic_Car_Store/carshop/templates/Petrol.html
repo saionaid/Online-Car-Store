@@ -3,5 +3,11 @@
  {% block content %}
 
 
+{% for p in object_list %}
+<ul>{{ p.name }} {{ p.price }}
+</ul>
+
+{% endfor %}
+
 
  {% endblock%}
