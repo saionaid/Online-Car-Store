@@ -22,18 +22,22 @@ from carshop.views import register
 
 
 urlpatterns = [
-    path('home/', homepage_view),
+    path('home/', homepage_view, name="home"),
     path("register/", register, name='register'),
     path('cars/',  cars),
-    path('contact_form/', contact_form),
+    path("contact_form/", contact, name="contact"),
     path('free4/', free4),
-    path('Electric/', electric),
-    path('Diesel/', diesel),
+    path('Electric/', electric, name='electric'),
+    path('Diesel/', DieselView.as_view(), name='diesel'),
     path('Petrol/', petrol),
     path('Gas/', gas),
     path('Hybrid/', hybrid),
-    path('Hydrogen/', hydrogen),
+    path('Hydrogen/', HydrogenView.as_view(), name='hydrogen'),
     path('admin/', admin.site.urls),
-    path('', include("django.contrib.auth.urls")),
+    path('product_list/<int:pk>', ProductListView.as_view(), name='list_of_cars'),
+    path('product_create/<int:pk>', ProductCreateView.as_view(), name='createnew'),
+    path('product_detail/<int:pk>', ProductDetailView.as_view(), name='detail'),
+    # path('product_delete/<int:pk>', ProductDeleteView.as_view(), name='delete'),
 
+    path('', include("django.contrib.auth.urls")),
 ]

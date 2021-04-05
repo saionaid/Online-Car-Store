@@ -1,23 +1,42 @@
-from django.shortcuts import render, redirect
-from .forms import RegisterForm
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.core.mail import send_mail, BadHeaderError
+from .forms import RegisterForm, ContactForm, ProductForm
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .models import Product, CarType
-from django.views.generic import ListView
+from django.views.generic import ListView, FormView, TemplateView, DetailView, DeleteView, CreateView
+
+
+
+
+
+
+
 
 class ProductListView(ListView):
+    template_name = "product_list.html"
     queryset = Product.objects.all()
 
+class ProductCreateView(CreateView):
 
-    def product_list_view(request):
-        products = Product.objects.all()
-        context = {
-            'object_list': products
-        }
-        return render(request, 'cars.html', context)
+    form_class = ProductForm
 
+    template_name = "product_create.html"
+    queryset = Product.objects.all()
+    success_url = '/'
 
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
+class ProductDetailView(DetailView):
+    template_name = "product_detail.html"
+    queryset = Product.objects.all()
+
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Product, id=id_)
 
 
 
@@ -47,11 +66,20 @@ def contact_form(request, *args, **kwargs):
 def free4(request, *args, **kwargs):
     return render(request, "free4.html", {})
 
-def hydrogen(request, *args, **kwargs):
-    return render(request, "Hydrogen.html", {})
 
-def diesel(request, *args, **kwargs):
-    return render(request, "Diesel.html", {})
+class HydrogenView(ListView):
+    model = Product
+    queryset = Product.objects.filter(manufacturer='Porsche')
+    context_object_name = 'product'
+    template_name = 'Hydrogen.html'
+
+
+
+class DieselView(ListView):
+    template_name = '"Diesel.html"'
+    queryset = Product.objects.all()
+    context_object_name = 'products'
+
 
 def petrol(request, *args, **kwargs):
     return render(request, "Petrol.html", {})
@@ -60,9 +88,34 @@ def electric(request, *args, **kwargs):
     return render(request, "Electric.html", {})
 
 def gas(request, *args, **kwargs):
-    return render(request, "products/Gas.html", {})
+    return render(request, "Gas.html", {})
 
 def hybrid(request, *args, **kwargs):
     return render(request, "Hybrid.html", {})
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = "Website Inquiry"
+            body = {
+                'first_name': form.cleaned_data['first_name'],
+                'last_name': form.cleaned_data['last_name'],
+                'email': form.cleaned_data['email_address'],
+                'message': form.cleaned_data['message'],
+            }
+            message = "\n".join(body.values())
+
+            try:
+                send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect("http://127.0.0.1:8000/home")
+
+    form = ContactForm()
+    return render(request, "contact_form.html", {'form': form})
+
+
 
 
