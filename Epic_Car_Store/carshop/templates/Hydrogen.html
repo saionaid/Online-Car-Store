@@ -4,9 +4,17 @@
 
 
 {% for p in object_list %}
-<ul>{{ p.name }} {{ p.price }}
-</ul>
+<table>
+  <tr>
+    <td>{{ p.name }}</td>
+    <td>{{ p.price }}</td>
+   <td>{{ p.year_released }}</td>
+    <td>{{ p.manufacturer }}</td>
+
+  </tr>
+
+</table>
 
 {% endfor %}
 
- {% endblock%}
+{% endblock%}
