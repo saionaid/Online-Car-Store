@@ -1,43 +1,55 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from .forms import RegisterForm, ContactForm, ProductForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
 from .models import Product, CarType
-from django.views.generic import ListView, FormView, TemplateView, DetailView, DeleteView, CreateView
+from django.views.generic import UpdateView, ListView, FormView, TemplateView, DetailView, DeleteView, CreateView
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
 
+def congrats(request, *args, **kwargs):
+    return render(request, "Congrats.html", {})
 
 
-
+class ProductUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = ['carshop.change_product']
+    template_name = 'product_update.html'
+    model = Product
+    context_object_name = 'product'
+    fields = '__all__'
+    success_url = reverse_lazy('cars')
 
 
 class ProductListView(ListView):
     template_name = "product_list.html"
     queryset = Product.objects.all()
 
-class ProductCreateView(CreateView):
-
+class ProductCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = ['carshop.add_product']
     form_class = ProductForm
 
     template_name = "product_create.html"
     queryset = Product.objects.all()
-    success_url = '/'
+    success_url = 'cars'
 
     def form_valid(self, form):
         print(form.cleaned_data)
         return super().form_valid(form)
 
-class ProductDetailView(DetailView):
+class CarDetailView(DetailView):
+    model = Product
     template_name = "product_detail.html"
-    queryset = Product.objects.all()
 
-    def get_object(self, queryset=None):
-        id_ = self.kwargs.get("id")
-        return get_object_or_404(Product, id=id_)
-
+class ProductDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = ['carshop.delete_product']
+    template_name = 'product_delete.html'
+    model = Product
+    context_object_name = 'product'
+    success_url = reverse_lazy('cars')
 
 
 
@@ -58,7 +70,11 @@ def homepage_view(request, *args, **kwargs):
     return render(request, "home.html", {})
 
 def cars(request,*args,**kwargs):
-    return render(request, "cars.html", {})
+
+    cartypes = CarType.objects.all()
+    context = {'cartypes': cartypes}
+
+    return render(request, "cars.html", context)
 
 def contact_form(request, *args, **kwargs):
     return render(request, "contact_form.html", {})
@@ -67,45 +83,27 @@ def free4(request, *args, **kwargs):
     return render(request, "free4.html", {})
 
 
-class HydrogenView(ListView):
+
+
+
+class CarsListView(ListView):
     model = Product
-    queryset = Product.objects.filter(type__name='Hydrogen')
+
     context_object_name = 'product'
-    template_name = 'Hydrogen.html'
+    template_name = 'carslist.html'
+
+    def get_queryset(self):
+
+        queryset = Product.objects.filter()
+
+        category = self.request.GET.get('category', None)
+
+        if category is not None:
+            queryset = queryset.filter(type__id=int(category))
+
+        return queryset
 
 
-
-class DieselView(ListView):
-    model = Product
-    queryset = Product.objects.filter(type__name='Diesel')
-    context_object_name = 'product'
-    template_name = 'Hydrogen.html'
-
-class PetrolView(ListView):
-    model = Product
-    queryset = Product.objects.filter(type__name='Petrol')
-    context_object_name = 'product'
-    template_name = 'Petrol.html'
-
-
-class ElectricView(ListView):
-    model = Product
-    queryset = Product.objects.filter(type__name='Electric')
-    context_object_name = 'product'
-    template_name = 'Electric.html'
-
-
-class GasView(ListView):
-    model = Product
-    queryset = Product.objects.filter(type__name='Gas')
-    context_object_name = 'product'
-    template_name = 'Gas.html'
-
-class HybridView(ListView):
-    model = Product
-    queryset = Product.objects.filter(type__name='Hybrid')
-    context_object_name = 'product'
-    template_name = 'Hybrid.html'
 
 def contact(request):
     if request.method == 'POST':

@@ -1,10 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+{% extends 'base.html' %}
+ {% block content %}
+
+<!--<table>-->
+<!--  <tr>-->
+<!--    <th> Name </th>-->
+<!--    <th> Manufacturer </th>-->
+<!--    <th> Year released </th>-->
+<!--    <th> Price </th>-->
+<!--  </tr>-->
+<!--  <tr>-->
+<!--    <td> {{object.name}} </td>-->
+<!--    <td> {{object.manufacturer}} </td>-->
+<!--    <td> {{object.year_released}} </td>-->
+<!--    <td> {{object.price}} </td>-->
+<!--  </tr>-->
+<!--  <tr>-->
+<!--    <th> Type </th>-->
+<!--    <th> Description </th>-->
+<!--    <th> Pic </th>-->
+<!--  </tr>-->
+<!--    <tr>-->
+<!--    <td> {{object.type}} </td>-->
+<!--    <td> {{object.description}} </td>-->
+<!--    <td> <img-->
+<!--  src="{{object.carimg}}"-->
+<!--  class="img-thumbnail"-->
+<!--  alt="..."> </td>-->
+<!--  </tr>-->
+<!--</table>-->
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      Name - {{object.name}}
+    </div>
+    <div class="col-md">
+      Price - {{object.price}}
+    </div>
+    <div class="col-md">
+      Year released - {{object.year_released}}
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      Type -{{object.type}}
+    </div>
+    <div class="col-md">
+      Manufacturer - {{object.manufacturer}}
+    </div>
+    <div class="col-md">Description - {{object.description}}
+
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+     <img
+  src="{{object.carimg}}"
+  class="img-thumbnail"
+  alt="...">
+    </div>
+    {% if perms.carshop.change_product %}
+
+    <div class="col-md">
+      <a class="btn btn-primary" href="{% url 'product_update' object.id %}">Update</a>
+       </div>
+      {% endif %}
+      {% if perms.carshop.delete_product %}
+    <div class="col-md">
+      <a class="btn btn-primary" href="{% url 'product_delete' object.id %}">Delete</a>
+
+
+
+
+
+    </div>
+   {% endif %}
+
+           <a class="btn btn-primary" href="{% url 'Congrats' %}">Buy</a>
+  </div>
+</div>
+
+
+ {% endblock%}

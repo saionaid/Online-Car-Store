@@ -70,9 +70,17 @@ body {
 
 <div class="sidenav">
   <a href="/cars">Cars</a>
-  <a href="/login">Login</a>
+         {% if user.is_authenticated %}
+               <a class="primary"> User: {{user.get_username}} </a>
+                <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+                {% else %}
+            <a href="{% url 'login' %}">Login</a>
+                {% endif %}
+
   <a href="/contact_form">Contact</a>
-<!--  <a href="free3">Clients</a>-->
+    {% if perms.carshop.add_product %}
+  <a href="/product_create">create new product</a>
+    {% endif %}
 <!--  <a href="free4">Contact</a>-->
 </div>
 

@@ -18,6 +18,7 @@ class ProductForm(forms.ModelForm):
         'description',
         'price',
         'manufacturer',
+        'carimg',
 
         ]
 

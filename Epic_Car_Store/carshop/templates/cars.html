@@ -165,123 +165,18 @@ h3.secondary-headline {
 <h3 class="secondary-headline removeFocusIndicator">Shop by Category</h3>
 
 <div id="secondary-messages">
+{% for cartype in cartypes %}
 
-  <a class="category-block" href="/Electric/">
+  <a class="category-block" href="{% url 'carslist' %}?category={{cartype.id}}">
+
     <picture>
-      <source type="image/webp" media="(max-width: 767px)" srcset="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU1QpCk8yblSNjRG5TZmrnM7fnQRFAlcPCaA&usqp=CAU?fmt=webp&amp;w=240">
-      <source type="image/jpg" media="(max-width: 767px)" srcset="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU1QpCk8yblSNjRG5TZmrnM7fnQRFAlcPCaA&usqp=CAU?fmt=jpg&amp;w=240">
-
-      <source type="image/webp" media="(max-width: 1071px)" srcset="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU1QpCk8yblSNjRG5TZmrnM7fnQRFAlcPCaA&usqp=CAU?fmt=webp&amp;w=540">
-      <source type="image/jpg" media="(max-width: 1071px)" srcset="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU1QpCk8yblSNjRG5TZmrnM7fnQRFAlcPCaA&usqp=CAU?fmt=jpg&amp;w=540">
-
-      <source type="image/webp" media="(min-width: 767px)" srcset="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU1QpCk8yblSNjRG5TZmrnM7fnQRFAlcPCaA&usqp=CAU?fmt=webp&amp;w=720">
-      <source type="image/jpg" media="(min-width: 767px)" srcset="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU1QpCk8yblSNjRG5TZmrnM7fnQRFAlcPCaA&usqp=CAU?fmt=jpg&amp;w=720">
-
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU1QpCk8yblSNjRG5TZmrnM7fnQRFAlcPCaA&usqp=CAU?w=540" data-yo-delaytype="lazy" data-yo-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU1QpCk8yblSNjRG5TZmrnM7fnQRFAlcPCaA&usqp=CAU?w=540" data-yo-loaded="true">
+      <img src="{{cartype.imgurl}}" data-yo-delaytype="lazy" data-yo-src="{{cartype.imgurl}}" data-yo-loaded="true">
     </picture>
-    <p class="badge-label">Electric</p>
+    <p class="badge-label"> {{ cartype.name }}</p>
   </a>
-
-  <a class="category-block" href="/Hydrogen/">
-    <picture>
-      <source type="image/webp" media="(max-width: 767px)" srcset="https://www.cummins.com/sites/default/files/styles/newsroom_hero_image/public/images/newsroom_news_release/Hydrogen%20molecule%20-%20web.jpg?itok=QqNq9lug?fmt=webp&amp;w=240">
-      <source type="image/jpg" media="(max-width: 767px)" srcset="https://www.cummins.com/sites/default/files/styles/newsroom_hero_image/public/images/newsroom_news_release/Hydrogen%20molecule%20-%20web.jpg?itok=QqNq9lug?fmt=jpg&amp;w=240">
-
-      <source type="image/webp" media="(max-width: 1071px)" srcset="https://www.cummins.com/sites/default/files/styles/newsroom_hero_image/public/images/newsroom_news_release/Hydrogen%20molecule%20-%20web.jpg?itok=QqNq9lug?fmt=webp&amp;w=540">
-      <source type="image/jpg" media="(max-width: 1071px)" srcset="https://www.cummins.com/sites/default/files/styles/newsroom_hero_image/public/images/newsroom_news_release/Hydrogen%20molecule%20-%20web.jpg?itok=QqNq9lug?fmt=jpg&amp;w=540">
-
-      <source type="image/webp" media="(min-width: 767px)" srcset="https://www.cummins.com/sites/default/files/styles/newsroom_hero_image/public/images/newsroom_news_release/Hydrogen%20molecule%20-%20web.jpg?itok=QqNq9lug?fmt=webp&amp;w=720">
-      <source type="image/jpg" media="(min-width: 767px)" srcset="https://www.cummins.com/sites/default/files/styles/newsroom_hero_image/public/images/newsroom_news_release/Hydrogen%20molecule%20-%20web.jpg?itok=QqNq9lug?fmt=jpg&amp;w=720">
-
-      <img src="https://www.cummins.com/sites/default/files/styles/newsroom_hero_image/public/images/newsroom_news_release/Hydrogen%20molecule%20-%20web.jpg?itok=QqNq9lug?w=540" data-yo-delaytype="lazy" data-yo-src="https://www.cummins.com/sites/default/files/styles/newsroom_hero_image/public/images/newsroom_news_release/Hydrogen%20molecule%20-%20web.jpg?itok=QqNq9lug?w=540" data-yo-loaded="true">
-    </picture>
-    <p class="badge-label">Hydrogen</p>
-  </a>
-
-    <a class="category-block" href="/Petrol/">
-    <picture>
-      <source type="image/webp" media="(max-width: 767px)" srcset="https://www.caryinstitute.org/sites/default/files/public/2019-12/oil_field_cc_wayne_hsieh_flckr.jpg?fmt=webp&amp;w=240">
-      <source type="image/jpg" media="(max-width: 767px)" srcset="https://www.caryinstitute.org/sites/default/files/public/2019-12/oil_field_cc_wayne_hsieh_flckr.jpg?fmt=jpg&amp;w=240">
-
-      <source type="image/webp" media="(max-width: 1071px)" srcset="https://www.caryinstitute.org/sites/default/files/public/2019-12/oil_field_cc_wayne_hsieh_flckr.jpg?fmt=webp&amp;w=540">
-      <source type="image/jpg" media="(max-width: 1071px)" srcset="https://www.caryinstitute.org/sites/default/files/public/2019-12/oil_field_cc_wayne_hsieh_flckr.jpg?fmt=jpg&amp;w=540">
-
-      <source type="image/webp" media="(min-width: 767px)" srcset="https://www.caryinstitute.org/sites/default/files/public/2019-12/oil_field_cc_wayne_hsieh_flckr.jpg?fmt=webp&amp;w=720">
-      <source type="image/jpg" media="(min-width: 767px)" srcset="https://www.caryinstitute.org/sites/default/files/public/2019-12/oil_field_cc_wayne_hsieh_flckr.jpg?fmt=jpg&amp;w=720">
-
-      <img src="https://www.caryinstitute.org/sites/default/files/public/2019-12/oil_field_cc_wayne_hsieh_flckr.jpg?w=540" data-yo-delaytype="lazy" data-yo-src="https://www.caryinstitute.org/sites/default/files/public/2019-12/oil_field_cc_wayne_hsieh_flckr.jpg?w=540" data-yo-loaded="true">
-    </picture>
-    <p class="badge-label">Petrol</p>
-  </a>
-
-    <a class="category-block" href="/Gas/">
-    <picture>
-      <source type="image/webp" media="(max-width: 767px)" srcset="https://media.nationalgeographic.org/assets/photos/000/279/27967.jpg?fmt=webp&amp;w=240">
-      <source type="image/jpg" media="(max-width: 767px)" srcset="https://media.nationalgeographic.org/assets/photos/000/279/27967.jpg?fmt=jpg&amp;w=240">
-
-      <source type="image/webp" media="(max-width: 1071px)" srcset="https://media.nationalgeographic.org/assets/photos/000/279/27967.jpg?fmt=webp&amp;w=540">
-      <source type="image/jpg" media="(max-width: 1071px)" srcset="https://media.nationalgeographic.org/assets/photos/000/279/27967.jpg?fmt=jpg&amp;w=540">
-
-      <source type="image/webp" media="(min-width: 767px)" srcset="https://media.nationalgeographic.org/assets/photos/000/279/27967.jpg?fmt=webp&amp;w=720">
-      <source type="image/jpg" media="(min-width: 767px)" srcset="https://media.nationalgeographic.org/assets/photos/000/279/27967.jpg?fmt=jpg&amp;w=720">
-
-      <img src="https://media.nationalgeographic.org/assets/photos/000/279/27967.jpg?w=540" data-yo-delaytype="lazy" data-yo-src="https://media.nationalgeographic.org/assets/photos/000/279/27967.jpg?w=540" data-yo-loaded="true">
-    </picture>
-    <p class="badge-label">Gas</p>
-  </a>
-
-   <a class="category-block" href="/Hybrid/">
-    <picture>
-      <source type="image/webp" media="(max-width: 767px)" srcset="https://media.autoexpress.co.uk/image/private/s--zI0UsQKO--/v1568374217/autoexpress/2019/09/227628_new_volvo_xc40_t5_plug-in_hybrid.jpg?fmt=webp&amp;w=240">
-      <source type="image/jpg" media="(max-width: 767px)" srcset="https://media.autoexpress.co.uk/image/private/s--zI0UsQKO--/v1568374217/autoexpress/2019/09/227628_new_volvo_xc40_t5_plug-in_hybrid.jpg?fmt=jpg&amp;w=240">
-
-      <source type="image/webp" media="(max-width: 1071px)" srcset="https://media.autoexpress.co.uk/image/private/s--zI0UsQKO--/v1568374217/autoexpress/2019/09/227628_new_volvo_xc40_t5_plug-in_hybrid.jpg?fmt=webp&amp;w=540">
-      <source type="image/jpg" media="(max-width: 1071px)" srcset="https://media.autoexpress.co.uk/image/private/s--zI0UsQKO--/v1568374217/autoexpress/2019/09/227628_new_volvo_xc40_t5_plug-in_hybrid.jpg?fmt=jpg&amp;w=540">
-
-      <source type="image/webp" media="(min-width: 767px)" srcset="https://media.autoexpress.co.uk/image/private/s--zI0UsQKO--/v1568374217/autoexpress/2019/09/227628_new_volvo_xc40_t5_plug-in_hybrid.jpg?fmt=webp&amp;w=720">
-      <source type="image/jpg" media="(min-width: 767px)" srcset="https://media.autoexpress.co.uk/image/private/s--zI0UsQKO--/v1568374217/autoexpress/2019/09/227628_new_volvo_xc40_t5_plug-in_hybrid.jpg?fmt=jpg&amp;w=720">
-
-      <img src="https://media.autoexpress.co.uk/image/private/s--zI0UsQKO--/v1568374217/autoexpress/2019/09/227628_new_volvo_xc40_t5_plug-in_hybrid.jpg?w=540" data-yo-delaytype="lazy" data-yo-src="https://media.autoexpress.co.uk/image/private/s--zI0UsQKO--/v1568374217/autoexpress/2019/09/227628_new_volvo_xc40_t5_plug-in_hybrid.jpg?w=540" data-yo-loaded="true">
-    </picture>
-    <p class="badge-label">Hybrid</p>
-  </a>
-
-  <a class="category-block" href="/Diesel/">
-    <picture>
-      <source type="image/webp" media="(max-width: 767px)" srcset="https://financialtribune.com/sites/default/files/styles/360x260/public/03_diesel_0.jpg?itok=D1_QkkQs?fmt=webp&amp;w=240">
-      <source type="image/jpg" media="(max-width: 767px)" srcset="https://financialtribune.com/sites/default/files/styles/360x260/public/03_diesel_0.jpg?itok=D1_QkkQs?fmt=jpg&amp;w=240">
-
-      <source type="image/webp" media="(max-width: 1071px)" srcset="https://financialtribune.com/sites/default/files/styles/360x260/public/03_diesel_0.jpg?itok=D1_QkkQs?fmt=webp&amp;w=540">
-      <source type="image/jpg" media="(max-width: 1071px)" srcset="https://financialtribune.com/sites/default/files/styles/360x260/public/03_diesel_0.jpg?itok=D1_QkkQs?fmt=jpg&amp;w=540">
-
-      <source type="image/webp" media="(min-width: 767px)" srcset="https://financialtribune.com/sites/default/files/styles/360x260/public/03_diesel_0.jpg?itok=D1_QkkQs?fmt=webp&amp;w=720">
-      <source type="image/jpg" media="(min-width: 767px)" srcset="https://financialtribune.com/sites/default/files/styles/360x260/public/03_diesel_0.jpg?itok=D1_QkkQs?fmt=jpg&amp;w=720">
-
-      <img src="https://financialtribune.com/sites/default/files/styles/360x260/public/03_diesel_0.jpg?itok=D1_QkkQs?w=540" data-yo-delaytype="lazy" data-yo-src="https://financialtribune.com/sites/default/files/styles/360x260/public/03_diesel_0.jpg?itok=D1_QkkQs?w=540" data-yo-loaded="true">
-    </picture>
-    <p class="badge-label">Disel</p>
-  </a>
-
-
-
-
-  <a class="category-block" id="sale-mobile-only" href="/c/sale/">
-    <picture>
-      <source type="image/webp" media="(max-width: 767px)" srcset="https://i1.adis.ws/i/tumi/SecondaryMessages_1014x758-07?fmt=webp&amp;w=240">
-      <source type="image/jpg" media="(max-width: 767px)" srcset="https://i1.adis.ws/i/tumi/SecondaryMessages_1014x758-07?fmt=jpg&amp;w=240">
-
-      <source type="image/webp" media="(max-width: 1071px)" srcset="https://i1.adis.ws/i/tumi/SecondaryMessages_1014x758-07?fmt=webp&amp;w=540">
-      <source type="image/jpg" media="(max-width: 1071px)" srcset="https://i1.adis.ws/i/tumi/SecondaryMessages_1014x758-07?fmt=jpg&amp;w=540">
-
-      <source type="image/webp" media="(min-width: 767px)" srcset="https://i1.adis.ws/i/tumi/SecondaryMessages_1014x758-07?fmt=webp&amp;w=720">
-      <source type="image/jpg" media="(min-width: 767px)" srcset="https://i1.adis.ws/i/tumi/SecondaryMessages_1014x758-07?fmt=jpg&amp;w=720">
-
-      <img src="https://i1.adis.ws/i/tumi/SecondaryMessages_1014x758-07?w=540" data-yo-delaytype="lazy" data-yo-src="https://i1.adis.ws/i/tumi/SecondaryMessages_1014x758-07?w=540" data-yo-loaded="true">
-    </picture>
-    <p class="badge-label">Sale</p>
-  </a>
+{% endfor %}
+    </div>
 </div>
-
-
- {% endblock%}
+    </div>
+{% endblock%}
 
