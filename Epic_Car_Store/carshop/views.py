@@ -15,6 +15,7 @@ def congrats(request, *args, **kwargs):
     return render(request, "Congrats.html", {})
 
 
+
 class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = ['carshop.change_product']
     template_name = 'product_update.html'
@@ -24,14 +25,16 @@ class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     success_url = reverse_lazy('cars')
 
 
+
 class ProductListView(ListView):
     template_name = "product_list.html"
     queryset = Product.objects.all()
 
+
+
 class ProductCreateView(PermissionRequiredMixin, CreateView):
     permission_required = ['carshop.add_product']
     form_class = ProductForm
-
     template_name = "product_create.html"
     queryset = Product.objects.all()
     success_url = 'cars'
@@ -40,9 +43,13 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
         print(form.cleaned_data)
         return super().form_valid(form)
 
+
+
 class CarDetailView(DetailView):
     model = Product
     template_name = "product_detail.html"
+
+
 
 class ProductDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = ['carshop.delete_product']
@@ -58,22 +65,17 @@ def register(response):
         form = RegisterForm(response.POST)
         if form.is_valid():
             form.save()
-
             return redirect("/home")
     else:
         form = RegisterForm()
-
     return render(response, "register/register.html", {"form":form})
-
 
 def homepage_view(request, *args, **kwargs):
     return render(request, "home.html", {})
 
 def cars(request,*args,**kwargs):
-
     cartypes = CarType.objects.all()
     context = {'cartypes': cartypes}
-
     return render(request, "cars.html", context)
 
 def contact_form(request, *args, **kwargs):
@@ -84,23 +86,18 @@ def free4(request, *args, **kwargs):
 
 
 
-
-
 class CarsListView(ListView):
-    model = Product
 
+    model = Product
     context_object_name = 'product'
     template_name = 'carslist.html'
 
     def get_queryset(self):
-
         queryset = Product.objects.filter()
-
         category = self.request.GET.get('category', None)
 
         if category is not None:
             queryset = queryset.filter(type__id=int(category))
-
         return queryset
 
 
@@ -117,13 +114,11 @@ def contact(request):
                 'message': form.cleaned_data['message'],
             }
             message = "\n".join(body.values())
-
             try:
                 send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect("http://127.0.0.1:8000/home")
-
     form = ContactForm()
     return render(request, "contact_form.html", {'form': form})
 

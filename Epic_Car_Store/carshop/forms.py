@@ -5,13 +5,10 @@ from .models import Product
 
 
 
-
-
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = [
-
         'name',
         'type',
         'year_released',
@@ -19,16 +16,21 @@ class ProductForm(forms.ModelForm):
         'price',
         'manufacturer',
         'carimg',
-
         ]
+
+
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField()
     location = forms.CharField()
 
+
+
 class Meta:
     model = User
     fields = ["username", "email", "location", "password1", "password2"]
+
+
 
 class ContactForm(forms.Form):
 	first_name = forms.CharField(max_length = 50)
